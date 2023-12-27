@@ -1,8 +1,5 @@
 <template>
-  <section
-    :class="weightColor"
-    class="w-[187px] h-[82px] rounded-xl p-3 mt-[32px] bg-white"
-  >
+  <section :class="bgColor" class="w-[187px] h-[82px] rounded-xl p-3 mt-[32px]">
     <div class="flex justify-around">
       <h3 class="font-bold">{{ props.name }}</h3>
       <h3>{{ props.value }} {{ props.meter }}</h3>
@@ -17,6 +14,6 @@ const props = defineProps({
   name: String,
   value: Number,
   meter: String,
-  weightColor: String,
+  bgColor: String,
 });
 </script>

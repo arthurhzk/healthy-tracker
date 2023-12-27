@@ -5,13 +5,20 @@
         Home
       </fwb-breadcrumb-item></router-link
     >
-    <router-link to="/table">
+    <router-link to="/monitoring">
       <fwb-breadcrumb-item href="#">
-        Relatórios
+        Relatório de monitoramento
       </fwb-breadcrumb-item></router-link
     >
-    <router-link to="/chat">
-      <fwb-breadcrumb-item> ChatBot </fwb-breadcrumb-item></router-link
+    <router-link to="/mass">
+      <fwb-breadcrumb-item href="#">
+        Relatório de IMC
+      </fwb-breadcrumb-item></router-link
+    >
+    <router-link to="/size">
+      <fwb-breadcrumb-item href="#">
+        Relatórios de medidas
+      </fwb-breadcrumb-item></router-link
     >
   </fwb-breadcrumb>
 </template>

@@ -18,6 +18,7 @@ export const useMonitoringStore = defineStore("monitoring", () => {
   const state = ref<State>(initialState);
   const message = ref<string>("");
   const accessToken = ref();
+  const loggedEmail = ref();
   const isLoggedIn = ref<boolean>(false);
   const signInWithEmail = async () => {
     try {
@@ -28,6 +29,7 @@ export const useMonitoringStore = defineStore("monitoring", () => {
         password: state.value.password,
       });
       accessToken.value = data.session?.access_token;
+      loggedEmail.value = data.user?.email;
       if (accessToken.value) {
         router.push("/system");
       } else {
@@ -46,5 +48,6 @@ export const useMonitoringStore = defineStore("monitoring", () => {
     message,
     accessToken,
     isLoggedIn,
+    loggedEmail,
   };
 });

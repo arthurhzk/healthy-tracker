@@ -26,5 +26,26 @@ export function useFetchMassData() {
     }
   });
 
-  return { fetchMassData, massMonitoring, getLastWeight, getLastHeight };
+  const calculateIMC = computed(() => {
+    const height = getLastHeight.value;
+    const weight = getLastWeight.value;
+
+    if (height && weight) {
+      const heightInMeters = height / 100;
+      const bmi = weight / (heightInMeters * heightInMeters);
+      const fixedValue = bmi.toFixed(2);
+      const valueToNumber = parseFloat(fixedValue);
+      return valueToNumber;
+    } else {
+      return null;
+    }
+  });
+
+  return {
+    fetchMassData,
+    massMonitoring,
+    getLastWeight,
+    getLastHeight,
+    calculateIMC,
+  };
 }

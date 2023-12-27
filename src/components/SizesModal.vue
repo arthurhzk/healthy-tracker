@@ -1,23 +1,29 @@
 <template>
-  <fwb-button @click="showModal"> Atualizar IMC </fwb-button>
+  <fwb-button @click="showModal"> Atualizar medidas </fwb-button>
 
   <fwb-modal v-if="isShowModal" @close="closeModal">
     <template #header>
-      <div class="flex items-center text-lg">Calcule o seu IMC</div>
+      <div class="flex items-center text-lg">Controle de Medidas</div>
     </template>
     <template #body>
       <div class="flex flex-col gap-4">
         <TheInput
           class="w-[300px] mx-auto"
           type="number"
-          placeholder="Digite a sua altura (cm)"
-          v-model="massState.height"
+          placeholder="Peito"
+          v-model="sizeState.chest"
         />
         <TheInput
           class="w-[300px] mx-auto"
           type="number"
-          placeholder="Digite o seu peso (kg)"
-          v-model="massState.weight"
+          placeholder="Cintura"
+          v-model="sizeState.waist"
+        />
+        <TheInput
+          class="w-[300px] mx-auto"
+          type="number"
+          placeholder="Quadril"
+          v-model="sizeState.hips"
         />
       </div>
     </template>
@@ -36,10 +42,10 @@
 import { ref } from "vue";
 import { FwbButton, FwbModal } from "flowbite-vue";
 import TheInput from "./TheInput.vue";
-import { useAddMassData } from "@/composables/useAddMassData";
+import { useAddSizeData } from "@/composables/useAddSizeData";
 const isShowModal = ref(false);
 
-const { addMassData, massState } = useAddMassData();
+const { addSizeData, sizeState } = useAddSizeData();
 
 function closeModal() {
   isShowModal.value = false;
@@ -49,8 +55,7 @@ function showModal() {
 }
 
 const addData = async () => {
-  await addMassData();
-
+  await addSizeData();
   closeModal();
 };
 </script>

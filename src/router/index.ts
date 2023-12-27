@@ -25,12 +25,23 @@ const router = createRouter({
       meta: {},
     },
     {
-      path: "/table",
-      name: "Table",
-      component: () => import("@/views/TableView.vue"),
+      path: "/monitoring",
+      name: "Monitoring",
+      component: () => import("@/views/MonitoringView.vue"),
       meta: {},
     },
+    {
+      path: "/mass",
+      name: "MassMonitoring",
+      component: () => import("@/views/MassView.vue"),
+    },
+    {
+      path: "/size",
+      name: "SizeMonitoring",
+      component: () => import("@/views/SizeView.vue"),
+    },
   ],
+  linkActiveClass: "active-link",
 });
 
 router.beforeEach((to, from, next) => {
