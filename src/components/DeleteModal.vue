@@ -1,29 +1,31 @@
 <template>
-  <fwb-button color="red" @click="showModal"> Deletar </fwb-button>
+  <div class="mt-2 ml-3">
+    <fwb-button color="red" @click="showModal"> Deletar </fwb-button>
 
-  <fwb-modal v-if="isShowModal" @close="closeModal">
-    <template #header>
-      <div class="flex items-center text-lg">Deletar registro</div>
-    </template>
-    <template #body>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-        Deseja realmente deletar este registro?
-      </p>
-      <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-        Esta ação não poderá ser desfeita.
-      </p>
-    </template>
-    <template #footer>
-      <div class="flex justify-between">
-        <fwb-button @click="closeModal" color="alternative">
-          Decline
-        </fwb-button>
-        <fwb-button @click="handleDeleteData" color="green">
-          I accept
-        </fwb-button>
-      </div>
-    </template>
-  </fwb-modal>
+    <fwb-modal v-if="isShowModal" @close="closeModal">
+      <template #header>
+        <div class="flex items-center text-lg">Deletar registro</div>
+      </template>
+      <template #body>
+        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          Deseja realmente deletar este registro?
+        </p>
+        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          Esta ação não poderá ser desfeita.
+        </p>
+      </template>
+      <template #footer>
+        <div class="flex justify-between">
+          <fwb-button @click="closeModal" color="alternative">
+            Cancelar
+          </fwb-button>
+          <fwb-button @click="handleDeleteData" color="green">
+            Aceitar
+          </fwb-button>
+        </div>
+      </template>
+    </fwb-modal>
+  </div>
 </template>
 
 <script lang="ts" setup>

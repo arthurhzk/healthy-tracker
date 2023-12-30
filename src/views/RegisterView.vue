@@ -10,14 +10,14 @@
       <TheInput
         class="w-[300px] mx-auto"
         type="email"
-        v-model="state.email"
+        v-model="email"
         placeholder="Digite o seu email"
       />
       <TheInput
         class="w-[300px] mx-auto"
         type="password"
         placeholder="Digite a sua senha"
-        v-model="state.password"
+        v-model="password"
       />
       <div class="flex items-center justify-center gap-8">
         <fwb-button @click="registerCredentials" color="default"
@@ -37,36 +37,22 @@ import { ref } from "vue";
 import Container from "@/components/Container.vue";
 import TheInput from "@/components/TheInput.vue";
 import { FwbButton } from "flowbite-vue";
-import { useMonitoringStore } from "@/stores/monitoring";
 import Spinning from "@/components/Spinning.vue";
 import { supabase } from "@/lib/supabase";
 import { FwbAlert } from "flowbite-vue";
-import { z } from "zod";
-const { state } = useMonitoringStore();
 
 const isLoading = ref<boolean>(false);
 const message = ref<string>("");
 const success = ref<boolean>();
-
-const defaultSchema = z.object({
-  email: z.string().email().describe("Email must be a valid email"),
-  password: z
-    .string()
-    .min(8)
-    .describe("Password must be at least 8 characters"),
-});
-
-const validationResult = defaultSchema.safeParse({
-  email: state.email,
-  password: state.password,
-});
+const email = ref<string>("");
+const password = ref<string>("");
 
 const registerCredentials = async () => {
   isLoading.value = true;
 
   const { data, error } = await supabase.auth.signUp({
-    email: state.email,
-    password: state.password,
+    email: email.value,
+    password: password.value,
   });
 };
 </script>

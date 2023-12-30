@@ -7,6 +7,7 @@
         <fwb-table-head-cell>Glicemia</fwb-table-head-cell>
         <fwb-table-head-cell>Batimentos</fwb-table-head-cell>
         <fwb-table-head-cell>Pressão</fwb-table-head-cell>
+        <fwb-table-head-cell></fwb-table-head-cell>
       </fwb-table-head>
       <fwb-table-body>
         <fwb-table-row v-for="item in reverseMonitoringOrder">

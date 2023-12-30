@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { useMonitoringStore } from "@/stores/monitoring";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -41,15 +40,15 @@ const router = createRouter({
       component: () => import("@/views/SizeView.vue"),
     },
   ],
-  linkActiveClass: "active-link",
+  linkActiveClass: "active-lki",
 });
 
-router.beforeEach((to, from, next) => {
-  const store = useMonitoringStore();
-  if (to.meta.requiresAuth && !store.accessToken) {
-    next("/login");
-  }
-  next();
-});
+// router.beforeEach((to, from, next) => {
+//   const store = useCredentialsStore();
+//   if (to.meta.requiresAuth && !store.authenticated) {
+//     next("/login");
+//   }
+//   next();
+// });
 
 export default router;

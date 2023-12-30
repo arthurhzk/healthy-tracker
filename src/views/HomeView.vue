@@ -1,5 +1,4 @@
 <template>
-
   <Container>
     <h1 class="text-2xl font-bold md:text-3xl">
       <span class="text-blue-400 font-bold">Uma simples solução</span>
@@ -30,35 +29,30 @@
       :description="card.description"
       :image="card.image"
     />
-    <h2 class="text-l font-bold text-blue-400 pt-3">TÓPICOS DE AJUDA</h2>
-    <h1 class="text-2xl font-bold md:text-3xl">Melhore o seu lifestyle!</h1>
-    <h1 class="text-l font-bold text-blue-400 pt-3">
-      Melhore a sua alimentação através das receitas dos nossos melhores Chefs.
-    </h1>
 
-    <div class="flex flex-col items-center gap-4">
-      <ReceipeCard
-        class="cursor-pointer"
-        v-for="(receipe, index) in receipes"
-        :key="index"
-        :receipe="receipe"
-      />
+    <div class="flex flex-col items-center gap-8">
+      <h2 class="text-l font-bold text-blue-400 pt-3">TÓPICOS DE AJUDA</h2>
+      <h1 class="text-2xl font-bold md:text-3xl">Melhore o seu lifestyle!</h1>
+      <h1 class="text-l font-bold text-blue-400 pt-3">
+        Melhore a sua alimentação através das receitas dos nossos melhores
+        Chefs.
+      </h1>
+      <div class="cursor-pointer md:grid md:grid-cols-2 lg:grid lg:grid-cols-3">
+        <ReceipeCard
+          v-for="(receipe, index) in receipes"
+          :key="index"
+          :receipe="receipe"
+        />
+      </div>
     </div>
   </Container>
 </template>
 
 <script setup lang="ts">
 import Container from "@/components/Container.vue";
-import TheNav from "@/components/TheNav.vue";
 import ServicesCard from "@/components/ServicesCard.vue";
-import { useRecipeStore } from "@/stores/recipe";
+import { useFetchReceipe } from "@/composables/useFetchRecipe";
 import cards from "@/data/cards";
-import { onMounted } from "vue";
 import ReceipeCard from "@/components/ReceipeCard.vue";
-const { fetchRecipeApi, receipes } = useRecipeStore();
-
-onMounted(() => {
-  fetchRecipeApi();
-  console.log(receipes);
-});
+const { receipes } = useFetchReceipe();
 </script>

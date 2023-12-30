@@ -7,6 +7,7 @@
         <fwb-table-head-cell>Peito</fwb-table-head-cell>
         <fwb-table-head-cell>Cintura</fwb-table-head-cell>
         <fwb-table-head-cell>Quadril</fwb-table-head-cell>
+        <fwb-table-head-cell></fwb-table-head-cell>
       </fwb-table-head>
       <fwb-table-body>
         <fwb-table-row v-for="item in reverseMonitoringOrder">
@@ -55,3 +56,14 @@ const reverseMonitoringOrder = computed(() => {
   return sizeMonitoring.value ? sizeMonitoring.value.slice().reverse() : [];
 });
 </script>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

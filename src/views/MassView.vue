@@ -7,6 +7,7 @@
         <fwb-table-head-cell>Peso</fwb-table-head-cell>
         <fwb-table-head-cell>Altura</fwb-table-head-cell>
         <fwb-table-head-cell>Cálculo IMC</fwb-table-head-cell>
+        <fwb-table-head-cell></fwb-table-head-cell>
       </fwb-table-head>
       <fwb-table-body>
         <fwb-table-row v-for="item in reverseMonitoringOrder">

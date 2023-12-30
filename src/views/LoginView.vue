@@ -44,8 +44,50 @@ import { ref } from "vue";
 import Container from "@/components/Container.vue";
 import TheInput from "@/components/TheInput.vue";
 import { FwbButton } from "flowbite-vue";
-import { useMonitoringStore } from "@/stores/monitoring";
+import { supabase } from "@/lib/supabase";
+import { useRouter } from "vue-router";
 import Spinning from "@/components/Spinning.vue";
-const { state, signInWithEmail, message } = useMonitoringStore();
+import { useIsLoggedIn } from "@/composables/useIsLoggedIn";
+
+const { isLoggedIn } = useIsLoggedIn();
+interface State {
+  email: string;
+  password: string;
+}
+
+const initialState: State = {
+  email: "",
+  password: "",
+};
 const isLoading = ref<boolean>(false);
+const router = useRouter();
+const state = ref<State>(initialState);
+const message = ref<string>("");
+const accessToken = ref();
+const loggedEmail = ref();
+
+const signInWithEmail = async () => {
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: state.value.email,
+      password: state.value.password,
+    });
+    accessToken.value = data.session?.access_token;
+    loggedEmail.value = data.user?.email;
+    isLoggedIn.value = true;
+
+    if (accessToken.value) {
+      router.push("/system");
+    } else {
+      message.value = "Senha ou email incorretos, tente novamente!";
+      isLoading.value = false;
+      isLoggedIn.value = false;
+    }
+  } catch (error) {
+    console.log(error);
+    isLoggedIn.value = false;
+  } finally {
+    isLoading.value = false;
+  }
+};
 </script>

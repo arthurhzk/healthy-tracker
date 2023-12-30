@@ -4,7 +4,7 @@
     <h1 class="flex items-center justify-center text-3xl font-semibold">
       Seja bem-vindo!
     </h1>
-    <h1 class="text-3xl">Monitoramento de {{ loggedEmail }}</h1>
+    <h1 class="text-3xl">Monitoramento de {{ userLogged }}</h1>
     <TheModal name="Atualizar monitoramento" />
     <div class="flex flex-col items-center justify-center gap-4 md:flex-row">
       <MonitoringCard
@@ -85,14 +85,16 @@ import monitoringDataArray from "@/data/monitoringDataArray";
 import Container from "@/components/Container.vue";
 import TheModal from "@/components/TheModal.vue";
 import TheBreadCrumb from "@/components/TheBreadCrumb.vue";
-import { useMonitoringStore } from "@/stores/monitoring";
 import EightCard from "@/components/EightCard.vue";
 import MassModal from "@/components/MassModal.vue";
 import { useFetchSizeData } from "@/composables/useFetchSizeData";
 import { useFetchMassData } from "@/composables/useFetchMassData";
-const { loggedEmail } = useMonitoringStore();
+import { useCredentialsStore } from "@/stores/credentials";
 const { getLastHeight, getLastWeight, calculateIMC } = useFetchMassData();
 const { getLastChestValue, getLastHipsValue, getLastWaistValue } =
   useFetchSizeData();
 import SizesModal from "@/components/SizesModal.vue";
+const { getUser, userLogged } = useCredentialsStore();
+
+getUser();
 </script>

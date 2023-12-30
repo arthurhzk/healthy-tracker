@@ -19,19 +19,20 @@
       <div
         class="flex items-center md:order-2 space-x-1 md:space-x-2 rtl:space-x-reverse"
       >
-        <router-link to="/login">
+        <router-link to="/system">
           <a
             href="#"
             class="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-            >Login</a
+            >Minha Conta</a
           ></router-link
         >
 
-        <router-link to="/register">
+        <router-link to="/">
           <a
+            @click="signOutUser"
             href="#"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 md:px-5 md:py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >Sign up</a
+            >Sign out</a
           ></router-link
         >
         <button
@@ -225,3 +226,13 @@
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+import { supabase } from "@/lib/supabase";
+import { useIsLoggedIn } from "@/composables/useIsLoggedIn";
+const { isLoggedIn } = useIsLoggedIn();
+const signOutUser = async () => {
+  const { error } = await supabase.auth.signOut();
+  isLoggedIn.value = false;
+};
+</script>
