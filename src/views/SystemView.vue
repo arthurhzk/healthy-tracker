@@ -94,7 +94,5 @@ const { getLastHeight, getLastWeight, calculateIMC } = useFetchMassData();
 const { getLastChestValue, getLastHipsValue, getLastWaistValue } =
   useFetchSizeData();
 import SizesModal from "@/components/SizesModal.vue";
-const { getUser, userLogged } = useCredentialsStore();
-
-getUser();
+const { userLogged } = useCredentialsStore();
 </script>
