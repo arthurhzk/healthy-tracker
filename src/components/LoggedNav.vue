@@ -229,10 +229,14 @@
 
 <script setup lang="ts">
 import { supabase } from "@/lib/supabase";
-import { useIsLoggedIn } from "@/composables/useIsLoggedIn";
-const { isLoggedIn } = useIsLoggedIn();
+import { useIsLoggedIn } from "@/stores/user";
+const { isLoggedIn, setLoggedIn } = useIsLoggedIn();
+import { useRouter } from "vue-router";
+const router = useRouter();
 const signOutUser = async () => {
   const { error } = await supabase.auth.signOut();
-  isLoggedIn.value = false;
+  setLoggedIn(false);
+  localStorage.clear();
+  router.push("/");
 };
 </script>

@@ -10,6 +10,14 @@ import { RouterView } from "vue-router";
 import TheNav from "@/components/TheNav.vue";
 import LoggedNav from "@/components/LoggedNav.vue";
 import TheFooter from "@/components/TheFooter.vue";
-import { useIsLoggedIn } from "@/composables/useIsLoggedIn";
+import { useIsLoggedIn } from "@/stores/user";
+import { watch } from "vue";
 const { isLoggedIn } = useIsLoggedIn();
+
+watch(
+  () => isLoggedIn,
+  (value) => {
+    console.log(value);
+  }
+);
 </script>
